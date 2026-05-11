@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   BASE RESET
+   ============================================= */
+*, *::before, *::after {
+  cursor: none !important;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #FAF8F5;
+  color: #4B4563;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* =============================================
+   SCROLLBAR — light & minimal
+   ============================================= */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #FAF8F5; }
+::-webkit-scrollbar-thumb { background: #C4B5FD; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #9F7AEA; }
+
+/* =============================================
+   REUSABLE COMPONENT CLASSES
+   ============================================= */
+@layer components {
+
+  /* Card */
+  .card {
+    @apply bg-white rounded-2xl;
+    border: 1px solid #E5E0F5;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .card:hover {
+    box-shadow: 0 8px 32px rgba(159,122,234,0.18);
+    transform: translateY(-2px);
+  }
+
+  /* Primary button — solid purple */
+  .btn-primary {
+    @apply inline-flex items-center gap-2
+           px-7 py-3 rounded-xl font-semibold text-sm text-white
+           transition-all duration-200
+           active:scale-95;
+    background-color: #9F7AEA;
+    box-shadow: 0 4px 20px rgba(159,122,234,0.4);
+  }
+  .btn-primary:hover { background-color: #8B5CF6; }
+
+  /* Ghost / outline button */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2
+           px-7 py-3 rounded-xl font-semibold text-sm
+           border bg-white
+           transition-all duration-200
+           active:scale-95;
+    border-color: #E5E0F5;
+    color: #4B4563;
+  }
+  .btn-ghost:hover { border-color: #C4B5FD; background-color: #F5F0FF; }
+
+  /* Pill badge */
+  .badge-purple {
+    @apply inline-flex items-center gap-2
+           px-4 py-1.5 rounded-full text-xs font-medium;
+    background-color: #EDE9FE;
+    border: 1px solid #C4B5FD;
+    color: #9F7AEA;
+  }
+}
+
+/* =============================================
+   GRADIENT HEADLINE UTILITY
+   ============================================= */
+.gradient-text {
+  background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 60%, #C084FC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

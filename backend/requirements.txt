@@ -1,0 +1,17 @@
+fastapi==0.104.1
+uvicorn==0.24.0.post1
+python-multipart==0.0.6
+google-generativeai
+pydantic==2.5.2
+python-dotenv==1.0.0
+pypdf==4.2.0
+openai-whisper
+faiss-cpu
+sentence-transformers
+numpy
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+pytest
+pytest-cov
+pytest-asyncio
+httpx<0.28.0

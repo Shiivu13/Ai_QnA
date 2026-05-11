@@ -1,0 +1,26 @@
+# Node
+node_modules/
+dist/
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.pytest_cache/
+*.db
+
+# Docker
+.dockerignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project Specific
+backend/uploads/
+backend/vector_store/
+.gemini/
+.antigravityignore
+*.log
+
