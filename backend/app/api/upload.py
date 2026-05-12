@@ -28,8 +28,6 @@ async def upload_file(file: UploadFile = File(...)):
     Securely uploads and saves PDF, MP3, WAV, and MP4 files.
     """
     # Bulletproof check for directory existence
-    os.makedirs(UPLOAD_DIR, exist_ok=True)
-
     # 1. Extract and validate file extension
     file_ext = os.path.splitext(file.filename)[1].lower()
     
@@ -41,27 +39,26 @@ async def upload_file(file: UploadFile = File(...)):
 
     # 2. Generate a unique filename using UUID
     unique_filename = f"{uuid.uuid4()}{file_ext}"
-    file_path = os.path.join(UPLOAD_DIR, unique_filename)
-
+    
     # DEBUG LOG: Verify path resolution
-    print(f"[DEBUG] Saving upload to: {file_path}")
+    print(f"[DEBUG] Saving upload to: {os.path.join(UPLOAD_DIR, unique_filename)}")
 
-    # 3. Save the file to the uploads directory
     try:
+        # Bulletproof check for directory existence
+        os.makedirs(UPLOAD_DIR, exist_ok=True)
+        file_path = os.path.join(UPLOAD_DIR, unique_filename)
+        
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
             
+        return UploadResponse(
+            filename=unique_filename,
+            saved_path=file_path,
+            content_type=file.content_type,
+            message="File uploaded and saved successfully! 🚀"
+        )
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"An error occurred while saving the file: {str(e)}"
+            detail=f"An error occurred while uploading the file: {str(e)}"
         )
-    finally:
-        file.file.close()
-
-    return UploadResponse(
-        filename=unique_filename, # Return the unique filename for subsequent processing
-        saved_path=file_path,
-        content_type=file.content_type,
-        message="File uploaded and saved successfully! 🚀"
-    )

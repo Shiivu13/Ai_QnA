@@ -16,18 +16,19 @@ from app.models import file_metadata
 import time
 
 # Retry logic for database initialization (useful for Docker compose startup)
-max_retries = 5
-for i in range(max_retries):
-    try:
-        # Create database tables
-        Base.metadata.create_all(bind=engine)
-        print("Successfully connected to the database and created tables.")
-        break
-    except Exception as e:
-        print(f"Database connection failed (attempt {i+1}/{max_retries}): {e}")
-        time.sleep(2)
-else:
-    print("WARNING: Could not connect to the database after multiple retries.")
+if not os.getenv("TESTING"):
+    max_retries = 5
+    for i in range(max_retries):
+        try:
+            # Create database tables
+            Base.metadata.create_all(bind=engine)
+            print("Successfully connected to the database and created tables.")
+            break
+        except Exception as e:
+            print(f"Database connection failed (attempt {i+1}/{max_retries}): {e}")
+            time.sleep(2)
+    else:
+        print("WARNING: Could not connect to the database after multiple retries.")
 
 app = FastAPI(
     title="AI Document & Multimedia Q&A API",

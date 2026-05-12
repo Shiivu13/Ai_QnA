@@ -1,6 +1,16 @@
 # 🧠 AI Document & Multimedia Q&A Platform
 
+![App Hero Screenshot](backend/assets/app_hero.png)
+
 A production-ready, full-stack application that provides AI-powered intelligence over your documents and multimedia files. Upload PDFs, MP3s, or MP4s to instantly get beautifully formatted executive summaries or timestamped transcripts, and interactively chat with your content using a local RAG (Retrieval-Augmented Generation) engine.
+
+---
+
+## 📺 Live Demo
+
+[![Watch the Demo](https://cdn.loom.com/sessions/thumbnails/1b2abed615b846dc9354e5145ee07e39-with-play.gif)](https://www.loom.com/share/1b2abed615b846dc9354e5145ee07e39)
+
+[Watch the full demo on Loom](https://www.loom.com/share/1b2abed615b846dc9354e5145ee07e39)
 
 ---
 
@@ -51,8 +61,8 @@ The entire stack is containerized for a zero-friction setup.
 
 1. **Clone the repository**:
    ```bash
-   git clone <your-repo-url>
-   cd ai-qna-app
+   git clone https://github.com/Shiivu13/Ai_QnA.git
+   cd Ai_QnA
    ```
 
 2. **Configure Environment Variables**:
@@ -77,6 +87,10 @@ The entire stack is containerized for a zero-friction setup.
 ## 🧪 Testing
 
 The backend is fully covered by automated tests using `pytest`, `pytest-cov`, and `httpx`. Heavy AI dependencies and database operations are mocked for speed and stability.
+
+**Current Test Coverage: 96%**
+
+![Backend Test Coverage](backend/assets/coverage_report.png)
 
 To run tests locally:
 ```bash
